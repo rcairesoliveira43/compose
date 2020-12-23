@@ -69,7 +69,7 @@ class MetricsTest(DockerClientTestCase):
 
     @staticmethod
     def get_content():
-        resp = MetricsTest.test_session.get("http+unix://localhost")
+        resp = MetricsTest.test_session.get("http+unix://localhost/usage")
         print(resp.content)
         return resp.content
 

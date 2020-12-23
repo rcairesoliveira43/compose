@@ -22,7 +22,7 @@ class MetricsSource:
 if IS_WINDOWS_PLATFORM:
     METRICS_SOCKET_FILE = 'http+unix://\\\\.\\pipe\\docker_cli'
 else:
-    METRICS_SOCKET_FILE = 'http+unix:///var/run/metrics-docker-cli.sock'
+    METRICS_SOCKET_FILE = 'http+unix:///var/run/docker-cli.sock'
 
 
 class MetricsCommand(requests.Session):
@@ -43,7 +43,7 @@ class MetricsCommand(requests.Session):
 
     def send_metrics(self):
         try:
-            return self.post("http+unix://localhost/", json=self.to_map(), timeout=.05)
+            return self.post("http+unix://localhost/usage", json=self.to_map(), timeout=.05)
         except Exception as e:
             return e
 
